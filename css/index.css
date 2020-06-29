@@ -1,0 +1,11 @@
+.img_size{
+	width: 150px;
+	height: 150px;
+}
+.container_self{
+	width: 90%;
+}
+.caption_self{
+	bottom: 150px; 
+	padding-bottom:70px;
+}
