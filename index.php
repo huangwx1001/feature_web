@@ -34,6 +34,11 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
 		echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='label label-danger'>new</span>";
 	}
 }
+	$user_path = './featurefile/';
+	$filename=scandir($user_path);	//扫描目录，并且读取目录文件名
+	rsort($filename);
+	$lastmonth = 0;
+	$thisdate = date('Y-m-d');
 ?>
 <body>
 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:360px;">
@@ -48,7 +53,25 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
 		<li data-target="#myCarousel" data-slide-to="6" class=""></li>
       </ol>
       <div class="carousel-inner " role="listbox" style="height:360px;">
-        <div class="item active">
+		<div class="item active">
+          <div class="container">
+            <div class="carousel-caption caption_self">
+              <h1>IMS更新啦(2020-05-29)</h1>
+              <p>IMS更新公告(2.0.17)(2020-05-29)</p>
+			  <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm12">查看详细</span></a></p>
+            </div>
+          </div>
+        </div>
+	    <div class="item">
+          <div class="container">
+            <div class="carousel-caption caption_self">
+              <h1>IMS更新啦(2020-04-20)</h1>
+              <p>IMS更新公告(2.0.15)(2020-04-20)</p>
+			  <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm11">查看详细</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
           <div class="container">
             <div class="carousel-caption caption_self">
               <h1>IMS更新啦(2020-04-11)</h1>
@@ -132,52 +155,6 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-3">
-          <img class="img-circle img_size" src="images/gen2.png" alt="Generic placeholder image">
-          <h2>第二代特征库</h2>
-		<table class="table table-hover">
-			<tbody><tr><td>适用于2019年以前的上网行为管理和防火墙版本</td></tr>
-			<?php
-				$user_path = './featurefile/';
-				$filename=scandir($user_path);	//扫描目录，并且读取目录文件名
-				rsort($filename);
-				$lastmonth = 0;
-				$thisdate = date('Y-m-d');
-				foreach($filename as $name){
-					$gen = substr($name,0,9);
-					if($gen == "特征库"){
-						$year = substr($name,17,4);
-						$month = substr($name,22,2);
-						$day = substr($name,25,2);
-						$Date = "{$year}-{$month}-{$day}"; //因为diffBetweenTwoDays函数要求格式为xxxx-xx-xx，如2018-09-18，但是文件名中格式为2018.09.16，所以需要分别提取年月日，然后进行格式化
-						$diff = diffBetweenTwoDays($Date, $thisdate);
-						if($name=='.' || $name=='..'  ) continue;	//跳过“.”和“..”两个目录
-						$url = $user_path.$name;
-						if( $diff < 94 )
-						{
-							if ( $month != $lastmonth )
-							{
-								$lastmonth = $month;
-								echo "<tr><td>{$year}年{$month}月</td></tr>";
-							}
-							echo "<tr><td><span class='glyphicon glyphicon-file' aria-hidden='rue'></span>&nbsp;<a href='{$url}' download>{$name}</a>";
-							if( $diff < 7 ) //如果发布时间在7天内，则显示红色new标签，表示新发布
-							{
-								echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='label label-danger'>new</span></td></tr>";
-							}else{
-								echo "</td></tr>";
-							}
-						}
-					}
-				}
-				?>
-				<!--<td>
-					<span class="glyphicon glyphicon-link" aria-hidden="rue"></span>
-					<a href="javascript:void(0)"  style="color:#5a5a5a;">特征库2.5.6.2-2020.04.10.zip</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class='label label-danger'>new</span>
-				</td>-->
-				<tr><td></td></tr>
-		</tbody></table>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-3">
           <img class="img-circle img_size" src="images/gen4.png" alt="Generic placeholder image">
           <h2>第四代特征库</h2>
 		<table class="table table-hover">
@@ -191,6 +168,49 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
 				foreach($filename as $name){
 					$gen = substr($name,0,9);
 					if($gen == "第四代"){
+						$year = substr($name,26,4);
+						$month = substr($name,31,2);
+						$day = substr($name,34,2);
+						$Date = "{$year}-{$month}-{$day}"; //因为diffBetweenTwoDays函数要求格式为xxxx-xx-xx，如2018-09-18，但是文件名中格式为2018.09.16，所以需要分别提取年月日，然后进行格式化
+						$diff = diffBetweenTwoDays($Date, $thisdate);
+						if($name=='.' || $name=='..' ) continue;	//跳过“.”和“..”两个目录
+						$url = $user_path.$name;
+						if( $diff < 94 )
+						{
+							if ( $month != $lastmonth )
+							{
+								$lastmonth = $month;
+								echo "<tr><td>{$year}年{$month}月</td></tr>";
+							}
+							echo "<tr><td><span class='glyphicon glyphicon-file' aria-hidden='rue'></span>&nbsp;<a href='{$url}' download>{$name}</a>";
+							if( $diff < 7 ) //如果发布时间在7天内，则显示红色new标签，表示新发布
+							{
+								echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='label label-danger'>new</span></td></td>";
+							}else{
+								echo "</td></tr>";
+							}
+						}
+					}
+				}
+			?>
+			<tr><td></td></tr>
+		</tbody></table>
+          <!--<p><a class="btn btn-default" href="#" role="button">复制</a></p>-->
+        </div><!-- /.col-lg-4 -->
+		<div class="col-lg-3">
+          <img class="img-circle img_size" src="images/gen5.png" alt="Generic placeholder image">
+          <h2>第五代特征库</h2>
+		<table class="table table-hover">
+			<tbody><tr>
+				<td>
+					适用于2.1.6p0或以上版本的上网行为管理和防火墙
+				</td>
+			</tr>
+			<?php
+				$lastmonth = 0;
+				foreach($filename as $name){
+					$gen = substr($name,0,9);
+					if($gen == "第五代"){
 						$year = substr($name,26,4);
 						$month = substr($name,31,2);
 						$day = substr($name,34,2);
@@ -264,21 +284,21 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
         </div> <!--.col-lg-4 -->
         <div class="col-lg-3">
           <img class="img-circle img_size" src="images/iot.png" alt="Generic placeholder image">
-          <h2>物联网特征库</h2>
+          <h2>物联网第五代特征库</h2>
 		<table class="table table-hover">
 			<tbody><tr>
 				<td>
-				适用于视频网关版本
+				适用于1.1.1或以上版本的视频网关
 				</td>
 			</tr>
 			<?php
 				$lastmonth = 0;
 				foreach($filename as $name){
-					$gen = substr($name,0,9);
-					if($gen == "物联网"){
-						$year = substr($name,26,4);
-						$month = substr($name,31,2);
-						$day = substr($name,34,2);
+					$gen = substr($name,0,18);
+					if($gen == "物联网第五代"){
+						$year = substr($name,35,4);
+						$month = substr($name,40,2);
+						$day = substr($name,43,2);
 						$Date = "{$year}-{$month}-{$day}"; //因为diffBetweenTwoDays函数要求格式为xxxx-xx-xx，如2018-09-18，但是文件名中格式为2018.09.16，所以需要分别提取年月日，然后进行格式化
 						$diff = diffBetweenTwoDays($Date, $thisdate);
 						if($name=='.' || $name=='..' ) continue;	//跳过“.”和“..”两个目录
