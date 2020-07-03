@@ -53,7 +53,16 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
 		<li data-target="#myCarousel" data-slide-to="6" class=""></li>
       </ol>
       <div class="carousel-inner " role="listbox" style="height:360px;">
-		<div class="item active">
+	  	<div class="item active">
+          <div class="container">
+            <div class="carousel-caption caption_self">
+              <h1>第五代特征库上线啦(2020-07-03)</h1>
+              <p>2.1.6p0或以上版本的上网行为管理和防火墙，需要使用第五代特征库哦</p>
+			  <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm13">查看详细</span></a></p>
+            </div>
+          </div>
+        </div>
+		<div class="item">
           <div class="container">
             <div class="carousel-caption caption_self">
               <h1>IMS更新啦(2020-05-29)</h1>
@@ -80,39 +89,12 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
             </div>
           </div>
         </div>
-		<div class="item">
-          <div class="container">
-            <div class="carousel-caption caption_self">
-              <h1>IMS更新啦(2019-11-04)</h1>
-              <p>IMS更新公告(2.0.10)(2019-11-04)</p>
-              <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm9">查看详细</span></a></p>
-            </div>
-          </div>
-        </div>
         <div class="item">
           <div class="container">
             <div class="carousel-caption caption_self">
               <h1>32位版本切换第四代特征库公告(2019-04-19)</h1>
               <p>2019年的32位版本已经切换至第四代特征库，2019年之前的版本仍然使用第二代特征库，望周知</p>
               <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm7">查看详细</span></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption  caption_self">
-              <h1>IMS更新啦(2019-01-04)</h1>
-              <p>IMS更新公告(2.0.6)(2019-01-04)</p>
-              <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm4">查看详细</span></a></p>
-            </div>
-          </div>
-        </div>
-		<div class="item">
-          <div class="container">
-            <div class="carousel-caption  caption_self">
-              <h1>IMS更新啦(2018-09-19)</h1>
-              <p>IMS更新公告(2.0.4)(2018-09-19)</p>
-			  <p><a class="btn btn-lg btn-primary" href="javascript:void(0)" role="button"><span id="alarm3">查看详细</span></a></p>
             </div>
           </div>
         </div>
@@ -160,7 +142,7 @@ function shownew($updatedate) //显示红色new标签，updatedate为通知更�
 		<table class="table table-hover">
 			<tbody><tr>
 				<td>
-					适用于2.1.5p2之前版本的上网行为管理和防火墙
+					适用于2.1.5p2或之前版本的上网行为管理和防火墙
 				</td>
 			</tr>
 			<?php
